@@ -75,8 +75,14 @@ pipeline {
            }
         }
      }
+
+    stage ('Deploy to Dev Environment') {
+      steps {
+    build job: 'Ansible-Config-mgt/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev.yml']], propagate: false, wait: true
+    }
   }
 }
+
 
 
 
